@@ -1,18 +1,72 @@
-import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import './App.css'
-import { Button } from './components/ui/button'
+// App.tsx
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { SignedIn, SignedOut, UserButton } from "@clerk/clerk-react";
+
+import Home from "./pages/Home";
+import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
+import ProtectedRoute from "./auth/protectedRoutes";
 
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-   <>
-    <Button>Muneeb</Button>
-   </>
-  )
-}
+    <BrowserRouter>
+      <Routes>
+        {/* Root redirect */}
+        <Route
+          path="/"
+          element={
+            <>
+              <SignedIn>
+                <Navigate to="/home" replace />
+              </SignedIn>
+              <SignedOut>
+                <Navigate to="/sign-in" replace />
+              </SignedOut>
+            </>
+          }
+        />
 
-export default App
+        {/* Public Sign-in page - redirect to home if already signed in */}
+        <Route
+          path="/sign-in"
+          element={
+            <>
+              <SignedIn>
+                <Navigate to="/home" replace />
+              </SignedIn>
+              <SignedOut>
+                <SignInPage />
+              </SignedOut>
+            </>
+          }
+        />
+
+        {/* Public Sign-up page - redirect to home if already signed in */}
+        <Route
+          path="/sign-up"
+          element={
+            <>
+              <SignedIn>
+                <Navigate to="/home" replace />
+              </SignedIn>
+              <SignedOut>
+                <SignUpPage />
+              </SignedOut>
+            </>
+          }
+        />
+
+        {/* Protected home route */}
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
+}
