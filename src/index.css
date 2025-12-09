@@ -3,6 +3,18 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
+
+.cl-internal-1dauvpw{
+  display: none !important;
+}
+.cl-internal-l2l775{
+  display: none !important;
+}
+
+.cl-profileSection{
+  padding-left: 10px !important;
+}
 /* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
