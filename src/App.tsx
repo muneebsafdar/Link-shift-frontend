@@ -9,12 +9,12 @@ import SignUpPage from "./pages/SignUpPage";
 import Home from "./pages/Home";
 
 
-
 // Components
 import ProtectedRoute from "./auth/protectedRoutes";
 import Layout from "./Layouts/MainLayout";
 import AccountPage from "./pages/Account";
 import HistoryPage from "./pages/History";
+import RedirectPage from "./pages/RedirectPage";
 
 export default function App() {
   return (
@@ -26,6 +26,7 @@ export default function App() {
         
         {/* Landing Page - Always accessible */}
         <Route path="/" element={<LandingPage />} />
+        <Route path="/:shortCode" element={<RedirectPage />} />
 
         {/* ============================================ */}
         {/* AUTH ROUTES - Only for non-authenticated users */}
@@ -95,7 +96,7 @@ export default function App() {
 
         {/* Settings Page */}
         <Route
-          path="/settings"
+          path="/stats"
           element={
             <ProtectedRoute>
               <Layout>

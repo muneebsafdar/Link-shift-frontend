@@ -37,8 +37,8 @@ export default function Home() {
       
       console.log(shortCode)
       console.log(shortCode)
-      console.log('Backend URL:', import.meta.env.VITE_BACKEND_URL);
-      console.log('Full URL:', `${import.meta.env.VITE_BACKEND_URL}/api/short-links`);
+      console.log('Backend URL:', import.meta.env.VITE_FRONTEND_URL);
+      console.log('Full URL:', `${import.meta.env.VITE_FRONTEND_URL}/api/short-links`);
       // Call your backend API
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/short-links`, {
         userId: userId, 
@@ -50,7 +50,7 @@ export default function Home() {
       if (response.data.success) {
         // Construct the full short URL
         // const baseUrl = window.location.origin; // e.g., http://localhost:3000
-        const shortUrl = `${import.meta.env.VITE_BACKEND_URL}/${response.data.data.shortCode}`;
+        const shortUrl = `${import.meta.env.VITE_FRONTEND_URL}/${response.data.data.shortCode}`;
         setShortened(shortUrl);
       } else {
         setError(response.data.message || 'Failed to shorten URL');
