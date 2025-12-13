@@ -8,7 +8,6 @@ export default function Sidebar() {
   const navItems = [
     { to: "/home", icon: Home, label: "Home" },
     { to: "/history", icon: History, label: "ALL Links" },
-    { to: "/stats", icon: ChartSpline, label: "Stats" },
     { to: "/account", icon: User, label: "Account" },
   ];
 
